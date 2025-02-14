@@ -41,8 +41,8 @@ users = {
  "ann": "pass123",
  "mike": "password123",
  "liz": "pass123"
-}
-separator = "-"*50
+} 
+separator = "-" * 50
 
 #přihlášení uživatele do aplikace
 username = input("Enter username: ")
@@ -50,10 +50,14 @@ password = input("Enter password: ")
 print(separator)
 
 #ověření uživatele
-if  users.get(username) == password:
-  print(f"Welcome to the app, {username}")
+if users is True: 
+  if users.get(username) == password:
+    print(f"Welcome to the app, {username}")
 else:
-  print("unregistred user, terminatng the program..")
+  print(username)
+  print(password)
+  print("eunregistred user, terminatng the program..")
+  exit()
 
 #ANALÝZA TEXTU
 #výběr čísla textu pro analýzu
@@ -65,13 +69,53 @@ print(separator)
 #analýza textu vybraného uživatelem
 if select_user == 1 or select_user == 2 or select_user == 3:
   #přiřazení konkrétního textu do proměné
-  select_text = TEXTS[(select_user)-1]
+  select_text = TEXTS[(select_user) - 1]
+
   #rozdělení textu na slova
   words = select_text.split()
-  print(len(words))
+  print(f"There are {len(words)} words in the selected text.")
+
+#počet slov s začínající velkým písmenem v textu
+  capital_words = list()
+  for word in words:
+    if word.istitle():
+      capital_words.append(word)
+  print(f"There are {len(capital_words)} titlecase words.")
+
+#počet slov psaný velkými písmeny s podmínkou vynechat slova s číslem
+  uppercase_words = list()
+  for word in words:
+    if word.isupper() and not word.isalpha():
+      uppercase_words.append(word)
+  print(f"There are {len(uppercase_words)} uppercase words.")
+
+
+#počet slov psaný malými písmeny
+  lower_words = list()
+  for word in words:
+    if word.islower():
+      lower_words.append(word)
+  print(f"There are {len(lower_words)} lowercase words.")
+
+#počet čísel (ne cifer)
+  numbers = list()
+  for word in words:
+    if word.isnumeric():
+      numbers.append(word)
+  print(f"There are {len(numbers)} numeric strings.")
+
+#suma vše čísel
+  suma = list()
+  for number in words:
+    if number in numbers:
+      suma.append(int(number))
+  print(f"The sum of all the numbers {sum(suma)}.")
+  print(separator)
  
 else:
   print("The number does't exist. terminatng the program")
+
+
 
 
 
