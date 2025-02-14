@@ -55,6 +55,24 @@ if  users.get(username) == password:
 else:
   print("unregistred user, terminatng the program..")
 
+#ANALÝZA TEXTU
+#výběr čísla textu pro analýzu
+print("We have 3 texts to be analyzed")
+print(separator)
+select_user = int(input("Enter a number btw. 1 and 3 to select: "))
+print(separator)
+
+#analýza textu vybraného uživatelem
+if select_user == 1 or select_user == 2 or select_user == 3:
+  #přiřazení konkrétního textu do proměné
+  select_text = TEXTS[(select_user)-1]
+  #rozdělení textu na slova
+  words = select_text.split()
+  print(len(words))
+ 
+else:
+  print("The number does't exist. terminatng the program")
+
 
 
 
