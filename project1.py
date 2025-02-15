@@ -104,20 +104,41 @@ if select_user == 1 or select_user == 2 or select_user == 3:
       numbers.append(word)
   print(f"There are {len(numbers)} numeric strings.")
 
-#suma vše čísel
+#suma všech čísel
   suma = list()
   for number in words:
     if number in numbers:
       suma.append(int(number))
   print(f"The sum of all the numbers {sum(suma)}.")
-  print(separator)
  
+
+
 else:
   print("The number does't exist. terminatng the program")
 
 
+#graf analýzy
+
+#halvička grafu 
+print(separator)
+print(f"{'LEN':2}| {'OCCURENCES':15} |NR.")
+print(separator)
 
 
+#zjištění délky slov a odstranení znaků
+word_lenghts = []
+for word in words:
+  word_lenghts.append(len(word.strip(",.?!")))
+#print(word_lenghts)
 
+#serazení slov a odstranění opakujících se slov
+words_list = sorted(set(word_lenghts))
+#print(words_list)
+
+#cykl na vypsání konečného grafu
+for lenght in words_list:
+  count = word_lenghts.count(lenght)
+  characters = "*" * count
+  print(f"{lenght:2} | {characters:15} |{count}")
 
 
