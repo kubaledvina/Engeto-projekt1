@@ -50,9 +50,9 @@ password = input("Enter password: ")
 print(separator)
 
 #ověření uživatele
-if users is True: 
-  if users.get(username) == password:
+if  users.get(username) == password:
     print(f"Welcome to the app, {username}")
+    
 else:
   print(username)
   print(password)
