@@ -76,14 +76,14 @@ if select_user == 1 or select_user == 2 or select_user == 3:
   print(f"There are {len(words)} words in the selected text.")
 
 #počet slov s začínající velkým písmenem v textu
-  capital_words = list()
+  capital_words = []
   for word in words:
     if word.istitle():
       capital_words.append(word)
   print(f"There are {len(capital_words)} titlecase words.")
 
 #počet slov psaný velkými písmeny s podmínkou vynechat slova s číslem
-  uppercase_words = list()
+  uppercase_words = []
   for word in words:
     if word.isupper() and not word.isalpha():
       uppercase_words.append(word)
@@ -91,21 +91,21 @@ if select_user == 1 or select_user == 2 or select_user == 3:
 
 
 #počet slov psaný malými písmeny
-  lower_words = list()
+  lower_words = []
   for word in words:
     if word.islower():
       lower_words.append(word)
   print(f"There are {len(lower_words)} lowercase words.")
 
 #počet čísel (ne cifer)
-  numbers = list()
+  numbers = []
   for word in words:
     if word.isnumeric():
       numbers.append(word)
   print(f"There are {len(numbers)} numeric strings.")
 
 #suma všech čísel
-  suma = list()
+  suma = []
   for number in words:
     if number in numbers:
       suma.append(int(number))
@@ -114,14 +114,14 @@ if select_user == 1 or select_user == 2 or select_user == 3:
 
 
 else:
-  print("The number does't exist. terminatng the program")
-
+  print("The number does't exist. terminatng the program..")
+  exit()
 
 #graf analýzy
 
 #halvička grafu 
 print(separator)
-print(f"{'LEN':2}| {'OCCURENCES':15} |NR.")
+print(f"{'LEN':2}| {'OCCURENCES':17} |NR.")
 print(separator)
 
 
@@ -131,7 +131,7 @@ for word in words:
   word_lenghts.append(len(word.strip(",.?!")))
 #print(word_lenghts)
 
-#serazení slov a odstranění opakujících se slov
+#seřazení slov a odstranění opakujících se slov
 words_list = sorted(set(word_lenghts))
 #print(words_list)
 
@@ -139,6 +139,7 @@ words_list = sorted(set(word_lenghts))
 for lenght in words_list:
   count = word_lenghts.count(lenght)
   characters = "*" * count
-  print(f"{lenght:2} | {characters:15} |{count}")
+  #výstup s rormátování textu
+  print(f"{lenght:2} | {characters:17} |{count}")
 
 
