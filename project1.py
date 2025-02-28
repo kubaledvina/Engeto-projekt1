@@ -55,7 +55,7 @@ if  users.get(username) == password:
 else:
   print(username)
   print(password)
-  print("You entered the wrong number.. Exit the app.")
+  print("unregistered user, terminating the program..")
   exit()
 
 
@@ -69,7 +69,7 @@ try:
   print(separator)
   
 #analýza textu vybraného uživatelem
-  if selected_text == 1 or selected_text == 2 or selected_text == 3:
+  if selected_text in [1, 2, 3]:
     #přiřazení konkrétního textu do proměné
     selected_index_text = TEXTS[(selected_text) - 1]
 
@@ -99,7 +99,7 @@ try:
   suma_numbers = sum(int(number) for number in numbers_in_text)
   print(f"The sum of all the numbers {suma_numbers}.")
 
-except:
+except ValueError:
   print("The number does't exist. terminatng the program..")
   exit()
  
