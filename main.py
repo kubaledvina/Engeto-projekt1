@@ -58,72 +58,61 @@ else:
   print("unregistered user, terminating the program..")
   exit()
 
-
 #ANALÝZA TEXTU
-#podmínka zadání musí být číslo
-try:
-  #výběr čísla textu pro analýzu
-  print("We have 3 texts to be analyzed")
-  print(separator)
-  selected_text = int(input("Enter a number btw. 1 and 3 to select: "))
-  print(separator)
+#výběr čísla textu pro analýzu
+print("We have 3 texts to be analyzed")
+print(separator)
+selected_text = int(input("Enter a number btw. 1 and 3 to select: "))
+print(separator)
   
 #analýza textu vybraného uživatelem
-  if selected_text in [1, 2, 3]:
-    #přiřazení konkrétního textu do proměné
-    selected_index_text = TEXTS[(selected_text) - 1]
-
-#rozdělení textu na slova
-  words = selected_index_text.split()
-
-#celkový počet slov v textu
-  print(f"There are {len(words)} words in the selected text.")
-
-#počet slov s začínající velkým písmenem v textu
-  capital_words = [word for word in words if word.istitle()]  
-  print(f"There are {len(capital_words)} titlecase words.")
-
-#počet slov psaný velkými písmeny s podmínkou vynechat slova s číslem
-  uppercase_words = [word for word in words if word.isupper()]
-  print(f"There are {len(uppercase_words)} uppercase words.")
-
-#počet slov psaný malými písmeny 
-  lower_words = [word for word in words if word.islower()]
-  print(f"There are {len(lower_words)} lowercase words.")
-
-#počet čísel (ne cifer)
-  numbers_in_text = [number for number in words if number.isdigit()]
-  print(f"There are {len(numbers_in_text)} numeric strings.")
-
-#suma všech čísel
-  suma_numbers = sum(int(number) for number in numbers_in_text)
-  print(f"The sum of all the numbers {suma_numbers}.")
-
-except ValueError:
-  print("The number does't exist. terminatng the program..")
+if selected_text in [1, 2, 3]:
+  #přiřazení konkrétního textu do proměné
+  selected_index_text = TEXTS[(selected_text) - 1]
+else:
+  print("The number does't exist. terminating the program..")
   exit()
  
-#graf analýzy
+#rozdělení textu na slova
+words = selected_index_text.split()
 
+#celkový počet slov v textu
+print(f"There are {len(words)} words in the selected text.")
+
+#počet slov s začínající velkým písmenem v textu
+capital_words = [word for word in words if word.istitle()]  
+print(f"There are {len(capital_words)} titlecase words.")
+
+#počet slov psaný velkými písmeny s podmínkou vynechat slova s číslem
+uppercase_words = [word for word in words if word.isupper()]
+print(f"There are {len(uppercase_words)} uppercase words.")
+
+#počet slov psaný malými písmeny 
+lower_words = [word for word in words if word.islower()]
+print(f"There are {len(lower_words)} lowercase words.")
+
+#počet čísel (ne cifer)
+numbers_in_text = [number for number in words if number.isdigit()]
+print(f"There are {len(numbers_in_text)} numeric strings.")
+
+#suma všech čísel
+suma_numbers = sum(int(number) for number in numbers_in_text)
+print(f"The sum of all the numbers {suma_numbers}.")
+
+#graf analýzy
 #halvička grafu 
 print(separator)
 print(f"{'LEN':2}| {'OCCURENCES':17} |NR.")
 print(separator)
 
 #zjištění délky slov a odstranení znaků
-word_lenghts = []
-for word in words:
-  word_lenghts.append(len(word.strip(",.?!")))
+word_lenghts = [len(word.strip(",.?!")) for word in words]
 
-#seřazení slov a odstranění opakujících se slov
-words_list = sorted(set(word_lenghts))
-#print(words_list)
+#slovník pro počítání délky slov
+words_counter = {lenght: word_lenghts.count(lenght) for lenght in sorted(set(word_lenghts))}
 
 #cykl na vypsání konečného grafu
-for lenght in words_list:
-  count = word_lenghts.count(lenght)
-  characters = "*" * count
-  #výstup s formátování textu
-  print(f"{lenght:2} | {characters:17} |{count}")
+for lenght, count in words_counter.items():
+  print(f"{lenght:2} | {'*' * count:17} |{count}")
 
 
