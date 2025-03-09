@@ -13,7 +13,7 @@ TEXTS = [
     some 1000 feet above Twin Creek Valley
     to an elevation of more than 7500 feet
     above sea level. The butte is located just
-    north of US 30 and the Union Pacific Railroad,
+    north of US 30N and the Union Pacific Railroad,
     which traverse the valley.''',
     '''At the base of Fossil Butte are the bright
     red, purple, yellow and gray beds of the Wasatch
@@ -62,17 +62,23 @@ else:
 #výběr čísla textu pro analýzu
 print("We have 3 texts to be analyzed")
 print(separator)
-selected_text = int(input("Enter a number btw. 1 and 3 to select: "))
+user_input = input("Enter a number btw. 1 and 3 to select: ")
 print(separator)
   
 #analýza textu vybraného uživatelem
-if selected_text in [1, 2, 3]:
-  #přiřazení konkrétního textu do proměné
-  selected_index_text = TEXTS[(selected_text) - 1]
+#podmínka zadání musí být číslice
+if user_input.isdigit():
+    selected_text = int(user_input)
+
+    if selected_text in [1, 2, 3]:
+        selected_index_text = TEXTS[selected_text - 1]
+    else:
+        print("The number doesn't exist. Terminating the program..")
+        exit()
 else:
-  print("The number does't exist. terminating the program..")
-  exit()
- 
+    print("The number doesn't exist. Terminating the program..")
+    exit()
+
 #rozdělení textu na slova
 words = selected_index_text.split()
 
@@ -84,7 +90,7 @@ capital_words = [word for word in words if word.istitle()]
 print(f"There are {len(capital_words)} titlecase words.")
 
 #počet slov psaný velkými písmeny s podmínkou vynechat slova s číslem
-uppercase_words = [word for word in words if word.isupper()]
+uppercase_words = [word for word in words if word.isupper() and word.isalpha()]
 print(f"There are {len(uppercase_words)} uppercase words.")
 
 #počet slov psaný malými písmeny 
